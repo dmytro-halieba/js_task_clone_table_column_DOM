@@ -10,20 +10,12 @@ function createCell(tag, text) {
   return cell;
 }
 
-function doubleUpColumn(columnName, pasteIndex) {
-  const headersArray = Array.from(document.querySelectorAll('thead th'));
-
-  const columnNamePosition = headersArray.findIndex(
-    (th) => th.textContent === columnName,
-  );
-
-  if (columnNamePosition === -1) {
-    return `There are no column named ${columnName} in the table`;
-  }
-
+function doubleUpColumn(columnIndex, pasteIndex) {
   const header = document.querySelector('thead tr');
   const footer = document.querySelector('tfoot tr');
   const body = document.querySelectorAll('tbody tr');
+
+  const columnName = header.children[columnIndex].textContent;
 
   header.insertBefore(
     createCell('th', columnName),
@@ -36,15 +28,10 @@ function doubleUpColumn(columnName, pasteIndex) {
   );
 
   body.forEach((row) => {
-    const cellContent =
-      row.getElementsByTagName('td')[columnNamePosition].textContent;
+    const cellContent = row.children[columnIndex].textContent;
 
-    const newCell = document.createElement('td');
-
-    newCell.textContent = cellContent;
-
-    row.insertBefore(newCell, row.children[pasteIndex]);
+    row.insertBefore(createCell('td', cellContent), row.children[pasteIndex]);
   });
 }
 
-doubleUpColumn('Position', 4);
+doubleUpColumn(1, 4);
