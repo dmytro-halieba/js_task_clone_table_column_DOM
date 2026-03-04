@@ -1,4 +1,5 @@
 /* eslint-disable max-len */
+
 'use strict';
 
 function createCell(tag, text) {
