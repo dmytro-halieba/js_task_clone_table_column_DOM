@@ -1,0 +1,2 @@
+"use strict";function createCell(e,t){var r=document.createElement(e);return r.textContent=t,r}function doubleUpColumn(e,t){var r=document.querySelector("thead tr"),n=document.querySelector("tfoot tr"),o=document.querySelectorAll("tbody tr"),l=r.children[e].textContent;r.insertBefore(createCell("th",l),r.children[t]),n.insertBefore(createCell("th",l),n.children[t]),o.forEach(function(r){var n=r.children[e].textContent;r.insertBefore(createCell("td",n),r.children[t])})}doubleUpColumn(1,4);
+//# sourceMappingURL=js_task_clone_table_column_DOM.dcaa1758.js.map
